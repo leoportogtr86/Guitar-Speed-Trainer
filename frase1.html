@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Frase 1</title>
+    <style>
+        
+        #pdf{
+
+            width: 50%;
+            position: absolute;
+            top: 0;
+            height: 1000px;
+        }
+
+        body{
+
+            background-color: rgb(37, 34, 34);
+        }
+    </style>
+</head>
+<body>
+
+    <video id = 'video' src="frase1.mp4" controls></video>
+    <embed id = 'pdf' src="frase1.pdf" type="">
+    
+</body>
+<script>
+
+    let video = document.getElementById ('video')
+
+    video.currentTime = 60*4 - 2
+    video.playbackRate = 0.5
+
+    setInterval(function () {
+        
+        if (video.currentTime >= 60*4 + 14){
+
+            video.currentTime = 60*4 - 2
+
+
+        }
+
+
+    }, 100)
+</script>
+</html>
