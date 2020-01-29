@@ -19,6 +19,7 @@
             border-radius: 5px;
             font-size: 30px;
             font-family: Arial, Helvetica, sans-serif;
+            cursor: pointer;
 
         }
 
@@ -72,6 +73,12 @@
             position: absolute;
             top: 520px;
             left: 180px;
+            
+        }
+
+        #video{
+
+            border-radius: 20px;
         }
 
         #fimTxt {
@@ -93,7 +100,7 @@
     <button class="botao" id='inicio'>Início</button>
     <button class="botao" id='fim'>Fim</button>
     <button class="botao" id='limpar'>Limpar</button>
-    <input id='speed' type="range">
+    <input id='speed' min = '1' max = '100' type="range" value = '100'>
     <div id='speedTxt'>Speed:</div>
     <div id=inicioTxt>Início: </div>
     <div id='fimTxt'>Fim: </div>
@@ -110,6 +117,7 @@
     let speedTxt = document.getElementById('speedTxt')
     let inicioTxt = document.getElementById('inicioTxt')
     let fimTxt = document.getElementById('fimTxt')
+    let speed = document.getElementById('speed')
 
     video.playbackRate = 0.5
 
@@ -140,6 +148,11 @@
     }
 
     setInterval(() => {
+
+        console.log('Velocidade: ' + speed.value)
+
+        video.playbackRate = speed.value/100
+        speedTxt.innerHTML ='Speed: ' +  speed.value + '%'
 
         document.addEventListener('keypress', function (e) {
 
