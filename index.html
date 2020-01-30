@@ -12,6 +12,8 @@
             background-color: rgb(37, 36, 36);
         }
 
+
+
         .botao {
 
             width: 100px;
@@ -26,7 +28,7 @@
         #inicio {
 
             position: absolute;
-            left: 100px;
+            left: 400px;
             top: 380px;
             background-color: chartreuse;
         }
@@ -35,7 +37,7 @@
 
             position: absolute;
             background-color: crimson;
-            left: 250px;
+            left: 550px;
             top: 380px;
         }
 
@@ -43,7 +45,7 @@
 
             position: absolute;
             background-color: rgb(128, 114, 117);
-            left: 400px;
+            left: 700px;
             top: 380px;
         }
 
@@ -51,7 +53,7 @@
 
             position: absolute;
             top: 450px;
-            left: 150px;
+            left: 450px;
             background-color: darkblue;
         }
 
@@ -62,7 +64,7 @@
             font-family: Arial, Helvetica, sans-serif;
             position: absolute;
             top: 480px;
-            left: 180px;
+            left: 480px;
         }
 
         #inicioTxt {
@@ -72,35 +74,50 @@
             font-family: Arial, Helvetica, sans-serif;
             position: absolute;
             top: 520px;
-            left: 180px;
-            
+            left: 480px;
+
         }
 
-        #video{
+        #video {
 
             border-radius: 20px;
+            position: absolute;
+            left: 300px;
+            
         }
 
         #fimTxt {
 
-            color: crimson ;
+            color: crimson;
             font-size: 30px;
             font-family: Arial, Helvetica, sans-serif;
             position: absolute;
             top: 560px;
-            left: 180px;
+            left: 480px;
+        }
+
+        #pdf {
+
+            width: 55%;
+            position: absolute;
+            top: 0;
+            height: 1000px;
         }
     </style>
 </head>
 
 <body>
 
-    <video id='video' src="frase1.mp4" controls></video>
+    <video id='video' src="andy.mp4" controls></video>
+    
 
-    <button class="botao" id='inicio'>Início</button>
-    <button class="botao" id='fim'>Fim</button>
-    <button class="botao" id='limpar'>Limpar</button>
-    <input id='speed' min = '1' max = '100' type="range" value = '100'>
+    <abbr title="Clique aqui no momento exato para indicar onde o loop começará. Atalho de teclado: A"><button
+            class="botao" id='inicio'>Início</button></abbr>
+    <abbr title="Clique aqui no momento exato para indicar onde o loop terminará. Atalho de teclado: B"><button
+            class="botao" id='fim'>Fim</button></abbr>
+    <abbr title="Limpar os marcos de início e fim de loop. Atalho de teclado: C"><button class="botao"
+            id='limpar'>Limpar</button></abbr>
+    <input id='speed' min='1' max='120' type="range" value='100'>
     <div id='speedTxt'>Speed:</div>
     <div id=inicioTxt>Início: </div>
     <div id='fimTxt'>Fim: </div>
@@ -125,34 +142,40 @@
 
     limpar.onclick = function () {
 
-        window.location.reload()
+        //window.location.reload()
+        inicio = video.currentTime
+        fim = video.duration
+        inicioTxt.innerHTML = 'Início:'
+        fimTxt.innerHTML = 'Fim: '
 
     }
 
     inicioBt.onclick = function () {
 
-        console.log('Início do trecho: ' + parseInt(video.currentTime))
-        inicio = parseInt(video.currentTime)
-        inicioTxt.innerHTML = 'Início: ' + inicio + 's'
+        console.log('Início do trecho: ' + video.currentTime)
+        inicio = video.currentTime
+        inicioTxt.innerHTML = 'Início: ' + parseInt(inicio) + 's'
 
 
     }
 
     fimBt.onclick = function () {
 
-        console.log('Início do trecho: ' + parseInt(video.currentTime))
-        fim = parseInt(video.currentTime)
-        fimTxt.innerHTML = 'Fim: ' + fim + 's'
+        console.log('Início do trecho: ' + video.currentTime)
+        fim = video.currentTime
+        fimTxt.innerHTML = 'Fim: ' + parseInt(fim) + 's'
 
 
     }
 
     setInterval(() => {
 
+
+
         console.log('Velocidade: ' + speed.value)
 
-        video.playbackRate = speed.value/100
-        speedTxt.innerHTML ='Speed: ' +  speed.value + '%'
+        video.playbackRate = speed.value / 100
+        speedTxt.innerHTML = 'Speed: ' + speed.value + '%'
 
         document.addEventListener('keypress', function (e) {
 
@@ -167,12 +190,15 @@
 
                 console.log('Fim do trecho: ' + parseInt(video.currentTime))
                 fim = parseInt(video.currentTime)
-                fimTxt.innerHTML = 'Início: ' + fim + 's'
+                fimTxt.innerHTML = 'Fim: ' + fim + 's'
 
 
-            } else if (e.key == 'c'){
+            } else if (e.key == 'c') {
 
-                window.location.reload()
+                inicio = video.currentTime
+                fim = video.duration
+                inicioTxt.innerHTML = 'Início:'
+                fimTxt.innerHTML = 'Fim: '
 
 
             }
