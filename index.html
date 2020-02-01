@@ -121,23 +121,24 @@
             width: 30px;
         }
 
-        #frasesSalvas{
+        #frasesSalvas {
 
             position: absolute;
             right: 50px;
             top: 0;
         }
 
-        h2{
+        h2 {
 
             color: white;
             font-family: Arial, Helvetica, sans-serif;
         }
 
-        p{
+        p {
 
             font-weight: bold;
             cursor: pointer;
+            color: greenyellow;
         }
 
         #frasesSalvas {
@@ -145,7 +146,7 @@
             color: white;
         }
 
-        #f2{
+        #f2 {
 
             position: absolute;
             color: white;
@@ -163,22 +164,22 @@
     <input id='inputFrase1Inicio' type="text" placeholder="início">
     <input id='inputFrase1Final' type="text" placeholder="final">
     <button id='salvarBtn'>Salvar</button>
-    <button id = 'novaFrase'>+</button>
+    <button id='novaFrase'>+</button>
 
-    <div id = 'frasesSalvas'>
+    <div id='frasesSalvas'>
 
         <h2>Frases Salvas</h2>
 
-        <p id = 'p1'>Frase 1 ...............</p>
-        <p id = 'p2'>Frase 2 ...............</p>
-        <p id = 'p3'>Frase 3 ...............</p>
-        <p id = 'p4'>Frase 4 ...............</p>
-        <p id = 'p5'>Frase 5 ...............</p>
-        <p id = 'p6'>Frase 6 ...............</p>
-        <p id = 'p7'>Frase 7 ...............</p>
-        <p id = 'p8'>Frase 8 ...............</p>
-        <p id = 'p9'>Frase 9 ...............</p>
-        <p id = 'p10'>Frase 10 ...............</p>
+        <p id='p1'>Frase 1 ...............</p>
+        <p id='p2'>Frase 2 ...............</p>
+        <p id='p3'>Frase 3 ...............</p>
+        <p id='p4'>Frase 4 ...............</p>
+        <p id='p5'>Frase 5 ...............</p>
+        <p id='p6'>Frase 6 ...............</p>
+        <p id='p7'>Frase 7 ...............</p>
+        <p id='p8'>Frase 8 ...............</p>
+        <p id='p9'>Frase 9 ...............</p>
+        <p id='p10'>Frase 10 ...............</p>
 
 
     </div>
@@ -216,41 +217,142 @@
     let speed = document.getElementById('speed')
     let contadorFrases = 1
     let novaFrase = document.getElementById('novaFrase')
-    let frasesSalvas = document.getElementsByTagName('p')
+    let p1 = document.getElementById('p1')
+    let p2 = document.getElementById('p2')
+    let p3 = document.getElementById('p3')
+    let p4 = document.getElementById('p4')
+    let p5 = document.getElementById('p5')
+    let p6 = document.getElementById('p6')
+    let p7 = document.getElementById('p7')
+    let p8 = document.getElementById('p8')
+    let p9 = document.getElementById('p9')
+    let p10 = document.getElementById('p10')
 
-    p[0].onclick = function () {
+    function frasesSalvas() {
+
+        if (localStorage.frase1Inicio && localStorage.frase1Final) {
+
+            p1.innerHTML = 'Frase 1 ..... ' + localStorage.frase1Inicio + 's >>>' + localStorage.frase1Final + 's'
+
+
+
+        }
+
+        if (localStorage.frase2Inicio && localStorage.frase2Final) {
+
+            p2.innerHTML = 'Frase 2 ..... ' + localStorage.frase2Inicio + 's >>>' + localStorage.frase2Final + 's'
+
+
+
+        }
+
+        if (localStorage.frase3Inicio && localStorage.frase3Final) {
+
+            p3.innerHTML = 'Frase 3 ..... ' + localStorage.frase3Inicio + 's >>>' + localStorage.frase3Final + 's'
+
+
+
+        }
+
+        if (localStorage.frase4Inicio && localStorage.frase4Final) {
+
+            p4.innerHTML = 'Frase 4 ..... ' + localStorage.frase4Inicio + 's >>>' + localStorage.frase4Final + 's'
+
+
+
+        }
+
+    }
+
+    setInterval(frasesSalvas, 100)
+
+    p1.onclick = function () {
 
         console.log('frase 1')
-        
+        inicio = localStorage.getItem('frase1Inicio')
+        fim = localStorage.getItem('frase1Final')
+        inicioTxt.innerHTML = 'Início: ' + parseInt(inicio) + 's'
+        fimTxt.innerHTML = 'Fim: ' + parseInt(fim) + 's'
+
+        video.play()
+        video.currentTime = inicio
+
+    }
+
+    p2.onclick = function () {
+
+        console.log('frase 2')
+        inicio = localStorage.getItem('frase2Inicio')
+        fim = localStorage.getItem('frase2Final')
+        inicioTxt.innerHTML = 'Início: ' + parseInt(inicio) + 's'
+        fimTxt.innerHTML = 'Fim: ' + parseInt(fim) + 's'
+
+        video.play()
+        video.currentTime = inicio
+
+    }
+
+    p3.onclick = function () {
+
+        console.log('frase 3')
+        inicio = localStorage.getItem('frase3Inicio')
+        fim = localStorage.getItem('frase3Final')
+        inicioTxt.innerHTML = 'Início: ' + parseInt(inicio) + 's'
+        fimTxt.innerHTML = 'Fim: ' + parseInt(fim) + 's'
+
+        video.play()
+        video.currentTime = inicio
+
+    }
+
+    p4.onclick = function () {
+
+        console.log('frase 4')
+        inicio = localStorage.getItem('frase4Inicio')
+        fim = localStorage.getItem('frase4Final')
+        inicioTxt.innerHTML = 'Início: ' + parseInt(inicio) + 's'
+        fimTxt.innerHTML = 'Fim: ' + parseInt(fim) + 's'
+
+        video.play()
+        video.currentTime = inicio
+
     }
 
     novaFrase.onclick = function () {
 
         contadorFrases++
         console.log(contadorFrases)
-        
+
     }
     //let audio = document.getElementById('audio')
     setInterval(numeroFrases, 100)
 
     function numeroFrases() {
 
-        if (contadorFrases == 2){
+        if (contadorFrases == 2) {
 
             frase2.style.display = 'block'
             frase2Inicio.style.display = 'block'
             frase2Final.style.display = 'block'
             salvarBtn2.style.display = 'block'
-        } else if (contadorFrases == 3){
+
+        } else if (contadorFrases == 3) {
 
             frase3.style.display = 'block'
             frase3Inicio.style.display = 'block'
             frase3Final.style.display = 'block'
             salvarBtn3.style.display = 'block'
+
+        } else if (contadorFrases == 4) {
+
+            frase4.style.display = 'block'
+            frase4Inicio.style.display = 'block'
+            frase4Final.style.display = 'block'
+            salvarBtn4.style.display = 'block'
         }
 
 
-        
+
     }
 
 
@@ -299,7 +401,7 @@
     salvarBtn2.style.left = '150px'
     salvarBtn2.style.display = 'none'
 
-
+    //---------------------------------------------------------------------------
     let frase3 = document.createElement('button')
     frase3.innerHTML = 'Frase 3'
     body.appendChild(frase3)
@@ -335,9 +437,46 @@
     salvarBtn3.style.top = '110px'
     salvarBtn3.style.left = '150px'
     salvarBtn3.style.display = 'none'
+    //----------------------------------------------------------------------------------------------------------
 
     // salvarBtn.onclick = salvar()
 
+    let frase4 = document.createElement('button')
+    frase4.innerHTML = 'Frase 4'
+    body.appendChild(frase4)
+
+    frase4.style.position = 'absolute'
+    frase4.style.top = '150px'
+    frase4.style.left = '7px'
+    frase4.style.display = 'none'
+
+    let frase4Inicio = document.createElement('input')
+    frase4Inicio.placeholder = 'Início'
+    body.appendChild(frase4Inicio)
+    frase4Inicio.style.width = '30px'
+    frase4Inicio.style.position = 'absolute'
+    frase4Inicio.style.top = '150px'
+    frase4Inicio.style.left = '73px'
+    frase4Inicio.style.display = 'none'
+
+    let frase4Final = document.createElement('input')
+    frase4Final.placeholder = 'Final'
+    body.appendChild(frase4Final)
+    frase4Final.style.width = '30px'
+    frase4Final.style.position = 'absolute'
+    frase4Final.style.top = '150px'
+    frase4Final.style.left = '110px'
+    frase4Final.style.display = 'none'
+
+
+    let salvarBtn4 = document.createElement('button')
+    salvarBtn4.innerHTML = 'Salvar'
+    body.appendChild(salvarBtn4)
+    salvarBtn4.style.position = 'absolute'
+    salvarBtn4.style.top = '150px'
+    salvarBtn4.style.left = '150px'
+    salvarBtn4.style.display = 'none'
+    //----------------------------------------------------------------------------------------------------------
     frase1.onclick = function () {
 
         inicio = localStorage.getItem('frase1Inicio')
@@ -390,7 +529,7 @@
         localStorage.setItem('frase1Inicio', frase1Inicio)
         localStorage.setItem('frase1Final', frase1Final)
 
-        
+
 
 
 
@@ -426,6 +565,20 @@
         console.log('salvo')
         console.log(frase3Inicio)
         console.log(frase3Final)
+    }
+
+    salvarBtn4.onclick = function () {
+
+        frase4Inicio = frase4Inicio.value
+        frase4Final = frase4Final.value
+
+        localStorage.setItem('frase4Inicio', frase4Inicio)
+        localStorage.setItem('frase4Final', frase4Final)
+
+
+        console.log('salvo')
+        console.log(frase4Inicio)
+        console.log(frase4Final)
     }
 
 
