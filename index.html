@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Speed Guitar Trainer</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <style>
         body {
 
@@ -138,7 +139,12 @@
 
             font-weight: bold;
             cursor: pointer;
+            border-top: 1px solid grey;
+            border-bottom: 1px solid grey;
+            border-left: blue 2px solid;
             color: greenyellow;
+            font-family: 'roboto';
+            
         }
 
         #frasesSalvas {
@@ -152,12 +158,29 @@
             color: white;
             font-family: Arial, Helvetica, sans-serif;
         }
+
+        #progresso{
+
+            color: red;
+            font-family: roboto;
+            font-size: 30px;
+            position: absolute;
+            top: 400px;
+
+        }
+
+        #salvarProgresso{
+
+            position: absolute;
+            top: 450px;
+            left: 20px;
+        }
     </style>
 </head>
 
 <body>
 
-    <video id='video' src="andy.mp4" controls></video>
+    <video id='video' src="cacau.mp4" controls></video>
 
     <div id='salvar'>Salvar Frases</div>
     <button id='frase1'>Frase 1</button>
@@ -165,6 +188,9 @@
     <input id='inputFrase1Final' type="text" placeholder="final">
     <button id='salvarBtn'>Salvar</button>
     <button id='novaFrase'>+</button>
+
+    <div id = 'progresso'>Progresso: </div>
+    <button id = 'salvarProgresso' >Salvar Progresso</button>
 
     <div id='frasesSalvas'>
 
@@ -227,6 +253,33 @@
     let p8 = document.getElementById('p8')
     let p9 = document.getElementById('p9')
     let p10 = document.getElementById('p10')
+    let progressoTxt = document.getElementById('progresso')
+    let salvarProgresso = document.getElementById('salvarProgresso')
+
+    salvarProgresso.onclick = function () {
+
+        localStorage.setItem('progresso', parseInt(video.currentTime/video.duration*100))
+        
+    }
+
+    document.onclick = function () {
+
+        console.log(video.duration)
+        
+    }
+
+    setInterval(progresso, 500)
+
+    function progresso() {
+
+        let progresso
+
+        progresso = parseInt(video.currentTime/video.duration*100) + '%'
+
+        console.log(progresso)
+        progressoTxt.innerHTML = 'Progresso: '+ progresso
+        
+    }
 
     function frasesSalvas() {
 
@@ -671,6 +724,10 @@
         }
 
     }, 100);
+
+    console.log('Duração: ' +  video.duration)
+
+    
 
 
 
